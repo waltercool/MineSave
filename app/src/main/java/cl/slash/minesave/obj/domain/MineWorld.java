@@ -6,10 +6,12 @@ package cl.slash.minesave.obj.domain;
 public class MineWorld {
     private String worldName;
     private String path;
+    private int worldStorageLocation;
 
-    public MineWorld(String worldName, String path) {
+    public MineWorld(String worldName, String path, int worldStorageLocation) {
         this.worldName = worldName;
         this.path = path;
+        this.worldStorageLocation = worldStorageLocation;
     }
 
     public String getWorldName() {
@@ -18,5 +20,9 @@ public class MineWorld {
 
     public String getPath() {
         return path;
+    }
+
+    public int getWorldStorageLocation() {
+        return worldStorageLocation;
     }
 }

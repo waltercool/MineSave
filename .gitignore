@@ -1,9 +1,14 @@
 *.iml
 .gradle
+gradle
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
 /build
+/app/build
 /captures
 /.idea
+
+# Avoid keys to leak.
+apikeys.xml
