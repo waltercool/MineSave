@@ -11,34 +11,38 @@ import java.util.zip.ZipOutputStream;
  * Created by waltercool on 9/13/16.
  */
 public class Util {
+
     /**
-     * zipFolder function from
-     * http://stackoverflow.com/questions/6683600/zip-compress-a-folder-full-of-files-on-android
-     *
-     * @param inputFolderPath
-     * @param outZipPath
+     * http://www.java2s.com/Code/Java/File-Input-Output/Makingazipfileofdirectoryincludingitssubdirectoriesrecursively.htm
+     * @param inputFolder
+     * @param outputFile
+     * @throws Exception
      */
 
-    private static void zipFolder(String inputFolderPath, String outZipPath) {
-        try {
-            FileOutputStream fos = new FileOutputStream(outZipPath);
-            ZipOutputStream zos = new ZipOutputStream(fos);
-            File srcFile = new File(inputFolderPath);
-            File[] files = srcFile.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                byte[] buffer = new byte[1024];
-                FileInputStream fis = new FileInputStream(files[i]);
-                zos.putNextEntry(new ZipEntry(files[i].getName()));
-                int length;
-                while ((length = fis.read(buffer)) > 0) {
-                    zos.write(buffer, 0, length);
-                }
-                zos.closeEntry();
-                fis.close();
+    public static void zipDir(String inputFolder, String outputFile) throws Exception {
+        File dirObj = new File(inputFolder);
+        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outputFile));
+        addDir(dirObj, out);
+        out.close();
+    }
+
+    private static void addDir(File dirObj, ZipOutputStream out) throws IOException {
+        File[] files = dirObj.listFiles();
+        byte[] tmpBuf = new byte[1024];
+
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isDirectory()) {
+                addDir(files[i], out);
+                continue;
             }
-            zos.close();
-        } catch (IOException ioe) {
-            //TODO Handle exception
+            FileInputStream in = new FileInputStream(files[i].getAbsolutePath());
+            out.putNextEntry(new ZipEntry(files[i].getAbsolutePath()));
+            int len;
+            while ((len = in.read(tmpBuf)) > 0) {
+                out.write(tmpBuf, 0, len);
+            }
+            out.closeEntry();
+            in.close();
         }
     }
 }

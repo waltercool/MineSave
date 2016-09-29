@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MineSave</string>
+    <string name="app_remote_folder">/minesave</string>
 </resources>
