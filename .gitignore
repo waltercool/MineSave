@@ -9,6 +9,7 @@ gradle
 /app/build
 /captures
 /.idea
+/app/*.apk
 
 # Avoid keys to leak.
 apikeys.xml
