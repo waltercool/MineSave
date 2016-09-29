@@ -101,6 +101,10 @@ public class StorageUtils {
         } catch(IllegalArgumentException e) {
             e.printStackTrace();
             // Bad API usage?
+        } catch(RuntimeException e) {
+            e.printStackTrace();
+            // Session invalid?
+            saveCredentials(context, null);
         }
         return false;
     }
