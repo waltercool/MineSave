@@ -43,6 +43,7 @@ public class StorageUtils {
 
     public boolean saveInCloud(Context context, MineWorld world,
                                WorldStorageLocation cloudProvider) {
+        //TODO Move it to ASyncTask, so I can update status changes
         String compressedFilePath;
         try {
             compressedFilePath = compressWorld(context, world);
