@@ -1,3 +1,8 @@
+DEPRECATED
+
+Please see https://gitlab.com/waltercool/MineSave for main repo.
+*************
+
 This project is intended to work as transparency for a work-in-progress. A file called apikeys.xml
 will not be added into the repository, understanding the avoid of abuse of that.
 
